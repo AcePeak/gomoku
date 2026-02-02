@@ -114,13 +114,15 @@ test('diagonal win (↗)', () => {
 
 test('overline does NOT win by default', () => {
   const g = new GameEngine();
-  // Black at columns 0..5 on row 0 (6 in a row)
-  // White at columns 0..4 on row 1
-  for (let i = 0; i < 5; i++) {
-    g.placeStone(i, 0);
-    g.placeStone(i, 1);
-  }
-  const r = g.placeStone(5, 0); // 6 in a row for black
+  // Manually set up board to have 5 black stones with a gap, then fill the gap to make 6
+  // Place black at (0,0),(1,0),(2,0),(3,0) and (5,0) — non-consecutive
+  // Then fill (4,0) to make 6 in a row
+  g.board[0][0] = 1; g.board[0][1] = 1; g.board[0][2] = 1;
+  g.board[0][3] = 1; g.board[0][5] = 1;
+  g.board[1][0] = 2; g.board[1][1] = 2; g.board[1][2] = 2;
+  g.board[1][3] = 2; g.board[1][5] = 2;
+  g.currentPlayer = 1;
+  const r = g.placeStone(4, 0); // completes 6 in a row: cols 0-5
   assert(r.winner === 0, 'overline should not win');
   assert(!g.gameOver, 'game continues');
 });
@@ -128,11 +130,12 @@ test('overline does NOT win by default', () => {
 test('overline wins when ALLOW_OVERLINE=true', () => {
   GameEngine.ALLOW_OVERLINE = true;
   const g = new GameEngine();
-  for (let i = 0; i < 5; i++) {
-    g.placeStone(i, 0);
-    g.placeStone(i, 1);
-  }
-  const r = g.placeStone(5, 0);
+  g.board[0][0] = 1; g.board[0][1] = 1; g.board[0][2] = 1;
+  g.board[0][3] = 1; g.board[0][5] = 1;
+  g.board[1][0] = 2; g.board[1][1] = 2; g.board[1][2] = 2;
+  g.board[1][3] = 2; g.board[1][5] = 2;
+  g.currentPlayer = 1;
+  const r = g.placeStone(4, 0);
   assert(r.winner === 1, 'overline should win');
   GameEngine.ALLOW_OVERLINE = false; // reset
 });
