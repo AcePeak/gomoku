@@ -1,0 +1,15 @@
+{
+  "id": "task-006",
+  "description": "Landing page website: Hero section with animated game preview, feature highlights with icons, How to Play section, embedded playable demo, responsive design, modern CSS with gradients and glass-morphism",
+  "status": "APPROVED",
+  "iteration": 1,
+  "feedback": [
+    {
+      "content": "Approved",
+      "timestamp": "2026-02-02T03:12:44.002Z",
+      "iteration": 1
+    }
+  ],
+  "createdAt": "2026-02-02T03:00:53.756Z",
+  "updatedAt": "2026-02-02T03:12:44.003Z"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "task-004",
+  "description": "Creative campaign mode: 10-level progressive campaign with increasing AI difficulty, power stones (Bomb: remove opponent stone, Shield: protect a cell, Double: place 2 stones), board obstacles that block cells, score system with stars rating per level",
+  "status": "REJECTED",
+  "iteration": 1,
+  "feedback": [
+    {
+      "content": "campaign.js not implemented. Need full CampaignManager class with 10 levels, power stones, obstacles, star rating. Also need to update app.js and game.html with campaign UI.",
+      "timestamp": "2026-02-02T03:12:43.407Z",
+      "iteration": 1
+    }
+  ],
+  "createdAt": "2026-02-02T03:00:53.756Z",
+  "updatedAt": "2026-02-02T03:12:43.408Z"
+}

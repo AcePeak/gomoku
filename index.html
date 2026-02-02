@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GomokuX — Five-in-a-Row, Redefined</title>
+  <meta name="description" content="GomokuX: A modern take on the classic five-in-a-row strategy game. Battle AI opponents, unlock power stones, and conquer the campaign." />
+  <link rel="stylesheet" href="css/landing.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚫</text></svg>" />
+</head>
+<body class="landing-page">
+
+  <!-- Animated Background -->
+  <div class="bg-grid"></div>
+  <div class="floating-stones">
+    <div class="stone stone--black"></div>
+    <div class="stone stone--white"></div>
+    <div class="stone stone--black"></div>
+    <div class="stone stone--white"></div>
+    <div class="stone stone--black"></div>
+    <div class="stone stone--white"></div>
+    <div class="stone stone--black"></div>
+    <div class="stone stone--white"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="navbar-logo">
+      <span class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </span>
+      <span class="logo-text">GomokuX</span>
+    </a>
+
+    <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="navbar-links" id="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how-to-play">How to Play</a></li>
+      <li><a href="#demo">Preview</a></li>
+      <li><a href="game.html" class="nav-cta">Play Now →</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="landing-section hero" id="hero">
+    <div class="hero-glow"></div>
+
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Now with AI &amp; Campaign Mode
+    </div>
+
+    <h1 class="hero-headline">
+      <span class="gradient-text">GomokuX</span>
+      <span class="hero-cn">五子棋，重新定义</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      The classic five-in-a-row game reimagined with intelligent AI opponents,
+      a creative 10-level campaign, and powerful stone abilities that change
+      everything.
+    </p>
+
+    <div class="hero-actions">
+      <a href="game.html" class="btn-hero btn-hero--primary">
+        Start Playing
+        <span class="btn-arrow">→</span>
+      </a>
+      <a href="#features" class="btn-hero btn-hero--secondary">
+        Learn More
+      </a>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-mouse"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <div class="section-divider"></div>
+
+  <section class="landing-section features" id="features">
+    <span class="section-label">Features</span>
+    <h2 class="section-title">Everything you need to master Gomoku</h2>
+    <p class="section-subtitle">
+      From casual play to competitive campaigns — GomokuX packs strategy, creativity, and fun into every match.
+    </p>
+
+    <div class="features-grid stagger-in" id="features-grid">
+      <!-- AI Opponent -->
+      <div class="feature-card">
+        <div class="feature-icon feature-icon--ai">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="4"/>
+            <circle cx="9" cy="10" r="1.5" fill="#7c3aed" stroke="none"/>
+            <circle cx="15" cy="10" r="1.5" fill="#7c3aed" stroke="none"/>
+            <path d="M9 15h6" stroke-width="2"/>
+            <path d="M8 2v-2M16 2v-2" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <h3>AI Opponent</h3>
+        <p>Challenge yourself against 4 difficulty levels — from beginner-friendly to ruthlessly strategic. The AI adapts and fights back.</p>
+      </div>
+
+      <!-- Campaign Mode -->
+      <div class="feature-card">
+        <div class="feature-icon feature-icon--campaign">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="none"/>
+          </svg>
+        </div>
+        <h3>Campaign Mode</h3>
+        <p>Conquer 10 handcrafted levels with escalating difficulty. Each victory unlocks new power stones and abilities.</p>
+      </div>
+
+      <!-- Power-Ups -->
+      <div class="feature-card">
+        <div class="feature-icon feature-icon--powerups">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 3h12l4 6-10 13L2 9z"/>
+            <path d="M12 22V9"/>
+            <path d="M2 9h20"/>
+            <path d="M6 3l6 6 6-6"/>
+          </svg>
+        </div>
+        <h3>Creative Power-Ups</h3>
+        <p>Bomb stones that clear areas, shields that protect positions, and double-place abilities. Strategy just got a whole lot deeper.</p>
+      </div>
+
+      <!-- Responsive -->
+      <div class="feature-card">
+        <div class="feature-icon feature-icon--responsive">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <line x1="12" y1="18" x2="12" y2="18"/>
+          </svg>
+        </div>
+        <h3>Play Anywhere</h3>
+        <p>Fully responsive design that works beautifully on desktop, tablet, and mobile. Your game, your way, wherever you are.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Play Section -->
+  <div class="section-divider"></div>
+
+  <section class="landing-section how-to-play" id="how-to-play">
+    <span class="section-label">How to Play</span>
+    <h2 class="section-title">Simple rules, infinite strategy</h2>
+    <p class="section-subtitle" style="text-align:center;">
+      Learn the basics in seconds. Spend a lifetime mastering the depth.
+    </p>
+
+    <div class="rules-grid fade-in" id="rules-grid">
+      <div class="rule-card">
+        <div class="rule-number">1</div>
+        <h3>Place Your Stones</h3>
+        <p>Black goes first. Players alternate placing stones on the intersections of a 15×15 board. Each move is permanent — choose wisely.</p>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-number">2</div>
+        <h3>Five in a Row Wins</h3>
+        <p>Line up exactly five stones horizontally, vertically, or diagonally. The first player to complete a line wins the round.</p>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-number">3</div>
+        <h3>Use Power Stones</h3>
+        <p>In Campaign Mode, earn special abilities. Deploy bomb stones, protective shields, or double-place moves to turn the tide.</p>
+      </div>
+    </div>
+
+    <div class="power-stones-list fade-in" id="power-stones">
+      <div class="power-stone-item">
+        <span class="ps-icon">💣</span>
+        <div>
+          <div class="ps-name">Bomb Stone</div>
+          <div class="ps-desc">Clear a 3×3 area</div>
+        </div>
+      </div>
+
+      <div class="power-stone-item">
+        <span class="ps-icon">🛡️</span>
+        <div>
+          <div class="ps-name">Shield</div>
+          <div class="ps-desc">Protect a position</div>
+        </div>
+      </div>
+
+      <div class="power-stone-item">
+        <span class="ps-icon">⚡</span>
+        <div>
+          <div class="ps-name">Double Place</div>
+          <div class="ps-desc">Place two stones at once</div>
+        </div>
+      </div>
+
+      <div class="power-stone-item">
+        <span class="ps-icon">👁️</span>
+        <div>
+          <div class="ps-name">Vision</div>
+          <div class="ps-desc">Reveal AI's next move</div>
+        </div>
+      </div>
+
+      <div class="power-stone-item">
+        <span class="ps-icon">🔄</span>
+        <div>
+          <div class="ps-name">Swap</div>
+          <div class="ps-desc">Swap any stone's color</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo / Preview Section -->
+  <div class="section-divider"></div>
+
+  <section class="landing-section demo-section" id="demo">
+    <span class="section-label" style="justify-content:center;">Preview</span>
+    <h2 class="section-title" style="text-align:center;">Watch the game unfold</h2>
+    <p class="section-subtitle" style="text-align:center;margin-left:auto;margin-right:auto;">
+      A quick glimpse of GomokuX gameplay — stones placed, strategies formed, victory achieved.
+    </p>
+
+    <div class="demo-board-wrapper">
+      <div class="demo-board">
+        <!-- Animated stones showing a sample game sequence -->
+        <div class="demo-stone demo-stone--black"></div>
+        <div class="demo-stone demo-stone--white"></div>
+        <div class="demo-stone demo-stone--black"></div>
+        <div class="demo-stone demo-stone--white"></div>
+        <div class="demo-stone demo-stone--black"></div>
+        <div class="demo-stone demo-stone--white"></div>
+        <div class="demo-stone demo-stone--black"></div>
+        <div class="demo-stone demo-stone--white"></div>
+        <div class="demo-stone demo-stone--black"></div>
+        <!-- Win line -->
+        <div class="demo-win-line"></div>
+      </div>
+    </div>
+    <p class="demo-label">↑ CSS-animated demo — five in a row wins!</p>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="cta-box fade-in" id="cta-box">
+      <h2>Ready to play?</h2>
+      <p>Jump into a game right now. No downloads, no sign-ups — just pure strategy.</p>
+      <a href="game.html" class="btn-hero btn-hero--primary">
+        Play GomokuX
+        <span class="btn-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">GomokuX</span>
+        <span class="brand-sub">Five-in-a-row, redefined.</span>
+      </div>
+
+      <ul class="footer-links">
+        <li><a href="game.html">Play</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-to-play">Rules</a></li>
+        <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+
+      <div class="footer-credits">
+        Built with <a href="https://forgeloop.com" target="_blank" rel="noopener">ForgeLoop</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Minimal JS: mobile nav toggle + scroll animations -->
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('nav-toggle');
+    const links = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => {
+      links.classList.toggle('active');
+    });
+
+    // Close mobile nav when clicking a link
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        links.classList.remove('active');
+      });
+    });
+
+    // Navbar background on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(10, 10, 26, 0.92)';
+      } else {
+        navbar.style.background = 'rgba(10, 10, 26, 0.7)';
+      }
+    });
+
+    // Intersection Observer for fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.fade-in, .stagger-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Restart demo animation periodically
+    function restartDemo() {
+      const board = document.querySelector('.demo-board');
+      if (!board) return;
+      const stones = board.querySelectorAll('.demo-stone, .demo-win-line');
+      stones.forEach(s => {
+        s.style.animation = 'none';
+        s.offsetHeight; // trigger reflow
+        s.style.animation = '';
+      });
+    }
+
+    // Restart demo every 10 seconds
+    setInterval(restartDemo, 10000);
+  </script>
+
+</body>
+</html>

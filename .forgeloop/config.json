@@ -1,0 +1,9 @@
+{
+  "model": "auto",
+  "agent": "auto",
+  "maxIterations": 2,
+  "maxParallel": 1,
+  "plannerModel": null,
+  "reviewerModel": null,
+  "createdAt": "2026-02-02T03:00:42.108Z"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "task-005",
+  "description": "UI/UX polish: Stone placement animations, last-move highlight, win-line animation, dark/light theme toggle, move history sidebar, per-move timer, sound effects (place/capture/win), fully responsive mobile layout",
+  "status": "APPROVED",
+  "iteration": 1,
+  "feedback": [
+    {
+      "content": "Core enhancements good, integration into app.js deferred to campaign task",
+      "timestamp": "2026-02-02T03:12:43.706Z",
+      "iteration": 1
+    }
+  ],
+  "createdAt": "2026-02-02T03:00:53.756Z",
+  "updatedAt": "2026-02-02T03:12:43.707Z"
+}

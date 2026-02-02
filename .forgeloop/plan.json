@@ -1,0 +1,71 @@
+{
+  "requirements": "Build a creative Gomoku (五子棋) web game with AI opponent, progressive campaign, and a landing page website",
+  "tasks": [
+    {
+      "id": "task-001",
+      "description": "Project scaffolding + Canvas game board: Create HTML/CSS/JS project structure, render a 15x15 board on HTML Canvas, handle click-to-place stones with visual feedback, responsive layout",
+      "status": "PLANNED",
+      "iteration": 0,
+      "feedback": [],
+      "createdAt": "2026-02-02T03:00:53.755Z",
+      "updatedAt": "2026-02-02T03:00:53.756Z"
+    },
+    {
+      "id": "task-002",
+      "description": "Core game engine: Game state management, alternating turns (black/white), 5-in-a-row win detection (horizontal/vertical/diagonal), undo move, draw detection, game reset",
+      "status": "PLANNED",
+      "iteration": 0,
+      "feedback": [],
+      "createdAt": "2026-02-02T03:00:53.756Z",
+      "updatedAt": "2026-02-02T03:00:53.756Z"
+    },
+    {
+      "id": "task-003",
+      "description": "AI opponent with 4 difficulty levels: Implement minimax with alpha-beta pruning, move evaluation heuristics (threat detection, pattern scoring), Easy/Medium/Hard/Master levels, AI thinking indicator",
+      "status": "PLANNED",
+      "iteration": 0,
+      "feedback": [],
+      "createdAt": "2026-02-02T03:00:53.756Z",
+      "updatedAt": "2026-02-02T03:00:53.756Z"
+    },
+    {
+      "id": "task-004",
+      "description": "Creative campaign mode: 10-level progressive campaign with increasing AI difficulty, power stones (Bomb: remove opponent stone, Shield: protect a cell, Double: place 2 stones), board obstacles that block cells, score system with stars rating per level",
+      "status": "PLANNED",
+      "iteration": 0,
+      "feedback": [],
+      "createdAt": "2026-02-02T03:00:53.756Z",
+      "updatedAt": "2026-02-02T03:00:53.756Z"
+    },
+    {
+      "id": "task-005",
+      "description": "UI/UX polish: Stone placement animations, last-move highlight, win-line animation, dark/light theme toggle, move history sidebar, per-move timer, sound effects (place/capture/win), fully responsive mobile layout",
+      "status": "PLANNED",
+      "iteration": 0,
+      "feedback": [],
+      "createdAt": "2026-02-02T03:00:53.756Z",
+      "updatedAt": "2026-02-02T03:00:53.756Z"
+    },
+    {
+      "id": "task-006",
+      "description": "Landing page website: Hero section with animated game preview, feature highlights with icons, How to Play section, embedded playable demo, responsive design, modern CSS with gradients and glass-morphism",
+      "status": "PLANNED",
+      "iteration": 0,
+      "feedback": [],
+      "createdAt": "2026-02-02T03:00:53.756Z",
+      "updatedAt": "2026-02-02T03:00:53.756Z"
+    },
+    {
+      "id": "task-007",
+      "description": "Complete documentation: README.md with screenshots placeholder, game rules and creative mechanics explanation, AI difficulty breakdown, project structure docs, LICENSE file",
+      "status": "PLANNED",
+      "iteration": 0,
+      "feedback": [],
+      "createdAt": "2026-02-02T03:00:53.756Z",
+      "updatedAt": "2026-02-02T03:00:53.756Z"
+    }
+  ],
+  "status": "ACTIVE",
+  "createdAt": "2026-02-02T03:00:53.756Z",
+  "updatedAt": "2026-02-02T03:00:53.756Z"
+}
