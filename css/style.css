@@ -516,11 +516,14 @@ body {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 720px;
-  height: 720px;
+  width: min(720px, calc(100vh - 120px));
+  height: min(720px, calc(100vh - 120px));
+  overflow: hidden;
 }
 
 #board-canvas {
+  width: 100%;
+  height: 100%;
   border-radius: 12px;
   box-shadow: var(--canvas-shadow);
   cursor: pointer;

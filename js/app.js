@@ -203,6 +203,9 @@ function startFreePlay(difficulty) {
   hide(panelPowers);
   show($('btn-undo'));
 
+  // Re-size canvas now that game-area is visible
+  sizeCanvas();
+
   resetGame();
   setStatus(`Free Play — ${capitalize(difficulty)} AI. Your move!`);
 }
@@ -279,6 +282,9 @@ function startCampaignLevel(index) {
   show($('game-area'));
   hide(panelScore);
   show(panelLevelInfo);
+
+  // Re-size canvas now that game-area is visible
+  sizeCanvas();
 
   // Show power panel only if level has any powers
   const hasPowers = powerStones.bomb + powerStones.shield + powerStones.double > 0;
@@ -632,10 +638,6 @@ function handleUndo() {
    ================================================================ */
 
 function sizeCanvas() {
-  const container = canvas.parentElement;
-  const maxSide = Math.min(container.clientWidth, container.clientHeight, 720);
-  canvas.style.width = maxSide + 'px';
-  canvas.style.height = maxSide + 'px';
   board.resize();
 }
 
