@@ -238,6 +238,7 @@ export class Board {
     this._drawHighlight(ctx);
     this._drawHistoryHighlight(ctx);
     this._drawWinGlow(ctx);
+    this._drawMoveNumbers(ctx);
     this._drawHover(ctx);
   }
 
@@ -484,6 +485,42 @@ export class Board {
     ctx.fillStyle = gloss;
     ctx.fill();
 
+    ctx.restore();
+  }
+
+  /**
+   * Draw a move number label on a stone (for training replay).
+   * @param {number} col
+   * @param {number} row
+   * @param {number} num  Move number to display
+   * @param {string} color  'black' or 'white' (stone color, text will contrast)
+   */
+  drawMoveNumber(col, row, num, color) {
+    // Store for re-render
+    if (!this._moveNumbers) this._moveNumbers = [];
+    this._moveNumbers.push({ col, row, num, color });
+    this.render();
+  }
+
+  /** Clear all move number labels. */
+  clearMoveNumbers() {
+    this._moveNumbers = [];
+  }
+
+  /** @private Draw move numbers on rendered board */
+  _drawMoveNumbers(ctx) {
+    if (!this._moveNumbers || this._moveNumbers.length === 0) return;
+    ctx.save();
+    for (const { col, row, num, color } of this._moveNumbers) {
+      const cx = this.padding + col * this.cellSize;
+      const cy = this.padding + row * this.cellSize;
+      const fontSize = Math.max(10, this.stoneRadius * 0.75);
+      ctx.font = `bold ${fontSize}px sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = color === 'black' ? '#fff' : '#000';
+      ctx.fillText(String(num), cx, cy + 1);
+    }
     ctx.restore();
   }
 

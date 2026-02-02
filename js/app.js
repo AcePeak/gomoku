@@ -10,6 +10,7 @@ import { Game } from './game.js';
 import { GomokuAI } from './ai.js';
 import { SoundManager } from './sounds.js';
 import { CampaignManager } from './campaign.js';
+import { TrainingMode } from './training.js';
 
 /* ================================================================
    Singletons
@@ -21,12 +22,13 @@ const campaign = new CampaignManager();
 
 let game = new Game();
 let ai = null; // GomokuAI instance
+const training = new TrainingMode({ board, onStatus: (msg) => setStatus(msg) });
 
 /* ================================================================
    State
    ================================================================ */
 
-let mode = null;           // 'free' | 'campaign'
+let mode = null;           // 'free' | 'campaign' | 'training'
 let gameActive = false;
 let aiThinking = false;
 
@@ -172,11 +174,15 @@ function updateSoundIcon() {
 function showModeSelect() {
   gameActive = false;
   mode = null;
+  training.destroy();
   hide($('game-area'));
   hide(overlayDifficulty);
   hide(overlayLevels);
   hide(overlayComplete);
   hide(overlayGameover);
+  hide($('overlay-training'));
+  hide($('panel-training'));
+  show($('panel-actions'));
   show(overlayMode);
   setStatus('Welcome to Gomoku!');
 }
@@ -330,6 +336,23 @@ function resetGame() {
    ================================================================ */
 
 function onBoardClick(e) {
+  // Training quiz mode
+  if (mode === 'training' && training.quizMode) {
+    const cell = board.getCellFromClick(e.clientX, e.clientY);
+    if (!cell) return;
+    const result = training.checkGuess(cell.x, cell.y);
+    if (result) {
+      if (result.correct) {
+        setStatus('✅ 正确！好眼力！');
+        sounds.play('place');
+      } else {
+        setStatus(`❌ 实战走的是 (${result.actualCol+1}, ${result.actualRow+1})，再想想`);
+      }
+      updateTrainingUI();
+    }
+    return;
+  }
+
   if (!gameActive || aiThinking || game.isOver) return;
 
   // Only allow moves when it's the human's turn
@@ -634,6 +657,93 @@ function handleUndo() {
 }
 
 /* ================================================================
+   Training Mode
+   ================================================================ */
+
+async function showTrainingList() {
+  hide(overlayMode);
+  const games = await training.loadGames();
+  if (games.length === 0) {
+    setStatus('训练数据未找到，请先运行 selfplay 生成棋局。');
+    show(overlayMode);
+    return;
+  }
+  renderTrainingList(games);
+  show($('overlay-training'));
+}
+
+function renderTrainingList(games) {
+  const list = $('training-list');
+  if (!list) return;
+  list.innerHTML = '';
+  games.forEach(g => {
+    const item = document.createElement('button');
+    item.className = 'training-item';
+    item.innerHTML = `
+      <span class="training-item-num">${g.id}</span>
+      <div class="training-item-info">
+        <div class="training-item-title">${g.title}</div>
+        <div class="training-item-desc">${g.description}</div>
+        ${g.tags && g.tags.length ? `<div class="training-item-tags">${g.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+      </div>
+    `;
+    item.addEventListener('click', () => startTrainingGame(g.id));
+    list.appendChild(item);
+  });
+}
+
+function startTrainingGame(gameId) {
+  const g = training.selectGame(gameId);
+  if (!g) return;
+
+  mode = 'training';
+  hide($('overlay-training'));
+  show($('game-area'));
+  hide(panelScore);
+  hide(panelLevelInfo);
+  hide(panelPowers);
+  hide($('panel-actions'));
+  show($('panel-training'));
+
+  sizeCanvas();
+  board.clearBoard();
+  board.clearMoveNumbers();
+
+  // Update training panel info
+  $('training-game-title').textContent = g.title;
+  $('training-game-desc').textContent = g.description;
+  updateTrainingUI();
+}
+
+function updateTrainingUI() {
+  const ann = training.getCurrentAnnotation();
+  const annEl = $('training-annotation');
+  if (ann && annEl) {
+    annEl.textContent = ann.text;
+    show(annEl);
+  } else if (annEl) {
+    hide(annEl);
+  }
+
+  const total = training.currentGame ? training.currentGame.moves.length : 0;
+  $('training-progress').textContent = `${training.currentStep} / ${total}`;
+
+  // Auto-play button text
+  const autoBtn = $('btn-t-auto');
+  if (autoBtn) autoBtn.textContent = training.isAutoPlaying ? '⏸' : '▶';
+
+  // Quiz button
+  const quizBtn = $('btn-quiz-mode');
+  if (quizBtn) quizBtn.textContent = training.quizMode ? '🧠 退出猜一手' : '🧠 猜一手模式';
+}
+
+function handleTrainingFilter(tag) {
+  document.querySelectorAll('.btn-tag').forEach(b => b.classList.toggle('active', b.dataset.tag === tag));
+  const filtered = training.getFilteredGames(tag);
+  renderTrainingList(filtered);
+}
+
+/* ================================================================
    Canvas Sizing
    ================================================================ */
 
@@ -711,6 +821,7 @@ function init() {
   // Mode select
   $('btn-free-play')?.addEventListener('click', showDifficultySelect);
   $('btn-campaign')?.addEventListener('click', showLevelSelect);
+  $('btn-training')?.addEventListener('click', showTrainingList);
 
   // Difficulty select
   document.querySelectorAll('[data-difficulty]').forEach((btn) => {
@@ -754,6 +865,36 @@ function init() {
       if (!gameActive || aiThinking || game.isOver) return;
       togglePower(btn.dataset.power);
     });
+  });
+
+  // Training mode controls
+  $('btn-training-back')?.addEventListener('click', showModeSelect);
+  $('btn-t-start')?.addEventListener('click', () => { training.goToStart(); updateTrainingUI(); });
+  $('btn-t-end')?.addEventListener('click', () => { training.goToEnd(); updateTrainingUI(); });
+  $('btn-t-prev')?.addEventListener('click', () => { training.prevMove(); updateTrainingUI(); });
+  $('btn-t-next')?.addEventListener('click', () => { training.nextMove(); updateTrainingUI(); });
+  $('btn-t-auto')?.addEventListener('click', () => {
+    training.toggleAuto();
+    updateTrainingUI();
+    // Keep updating UI during auto-play
+    if (training.isAutoPlaying) {
+      const iv = setInterval(() => {
+        updateTrainingUI();
+        if (!training.isAutoPlaying) clearInterval(iv);
+      }, 850);
+    }
+  });
+  $('btn-quiz-mode')?.addEventListener('click', () => {
+    training.toggleQuiz();
+    updateTrainingUI();
+    if (training.quizMode) {
+      setStatus('🧠 猜一手模式 — 点击棋盘猜下一手！');
+    }
+  });
+
+  // Training filter tags
+  document.querySelectorAll('.btn-tag').forEach(btn => {
+    btn.addEventListener('click', () => handleTrainingFilter(btn.dataset.tag));
   });
 
   /* ── Initial state ─────────────────────────────────────────── */
